@@ -24,7 +24,7 @@ end
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -34,6 +34,20 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 gem 'capistrano'
+
+# gem "papertrail"
+gem "devise"
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "rspec-rails"
+  gem "pry"
+end
+
+group :test do
+  gem "rspec-rails"
+end
 
 # To use debugger
 # gem 'ruby-debug'
