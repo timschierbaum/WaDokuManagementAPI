@@ -16,10 +16,14 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    if current_user.status == 'admin'
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
+    else
+      flash[:notice] = 'Access denied!'
+      redirect_to  root_path
     end
   end
 
@@ -36,7 +40,12 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if current_user.id == params[:id].to_i
     @user = User.find(params[:id])
+    else
+      flash[:notice] = 'Access denied!'
+      redirect_to root_path
+    end
   end
 
   # POST /users
@@ -59,7 +68,9 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
+    if params[:user]["status"] && current_user.status != "admin"
+      params[:user].delete("status")
+    end
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }

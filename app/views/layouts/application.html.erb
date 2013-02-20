@@ -16,6 +16,7 @@
         <% if current_user.status == "admin" %>
           <li><%= link_to "Users", users_path, :method => :get %></li>
         <% end %>
+          <li><%= link_to "Konto", edit_user_path(current_user), :method => :get %></li>
       </ul>
 
       <ul class="nav pull-right">

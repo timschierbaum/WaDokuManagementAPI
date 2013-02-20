@@ -21,11 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.text_field :status, :readonly => true %>
   </div>
   <div class="actions">
     <%= f.submit %>
