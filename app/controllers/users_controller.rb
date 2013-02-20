@@ -62,7 +62,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -70,6 +70,7 @@ class UsersController < ApplicationController
       end
     end
   end
+
 
   # DELETE /users/1
   # DELETE /users/1.json

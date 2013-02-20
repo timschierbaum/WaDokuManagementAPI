@@ -12,7 +12,9 @@
 
 <p>
   <b>Status:</b>
-  <%= @user.status %>
+  <%= form_for @user do |f| %>
+  <% status = {"admin" => "admin", "editor" => "editor", "user" => "user"} %>
+  <%= f.select(:status, options_for_select([["admin", "admin"], ["editor", "editor"], ["user", "user"]], status[@user.status])) %> 
 </p>
 
 <p>
@@ -21,5 +23,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= f.submit %> 
+<% end %>
 <%= link_to 'Back', users_path %>
