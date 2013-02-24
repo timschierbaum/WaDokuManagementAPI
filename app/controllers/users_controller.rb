@@ -6,10 +6,16 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
+    if current_user.status == 'admin'
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @users }
+      end
+    else 
+      flash[:notice] = 'Access denied!'
+      redirect_to root_path
     end
+
   end
 
   # GET /users/1
@@ -41,7 +47,10 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     if current_user.id == params[:id].to_i
-    @user = User.find(params[:id])
+      @user = User.find(params[:id])
+      respond_to do |format|
+        format.html # edit.html.erb
+      end
     else
       flash[:notice] = 'Access denied!'
       redirect_to root_path
@@ -55,10 +64,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to root_path, notice: 'User was not created.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -76,7 +85,7 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { redirect_to root_path, notice: 'User was not updated.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -90,7 +99,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to users_url, notice: "User #{@user.name} was successfully deleted." }
       format.json { head :no_content }
     end
   end

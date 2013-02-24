@@ -37,16 +37,17 @@ gem 'capistrano'
 
 # gem "papertrail"
 gem "devise"
-
+gem "rspec-rails", :group => [:test, :development]
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
-  gem "rspec-rails"
   gem "pry"
 end
 
 group :test do
-  gem "rspec-rails"
+  gem "capybara"
+  gem "factory_girl_rails"
+  gem "guard-rspec"
 end
 
 # To use debugger
