@@ -36,7 +36,10 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
-
+  
+  config.include(MailerMacros)
+  config.before(:each) {reset_email}
+  config.include Capybara::DSL
   #devise
   config.include Devise::TestHelpers, :type => :controller
   config.include Devise::TestHelpers, :type => :view
