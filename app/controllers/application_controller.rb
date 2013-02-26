@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
     end
 
   end
+
+  def admin?
+    current_user.status == 'admin'
+  end
 end
