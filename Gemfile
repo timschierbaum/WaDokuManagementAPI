@@ -49,6 +49,7 @@ group :test do
   gem "factory_girl_rails"
   gem "guard-rspec"
   gem 'rb-inotify', '~> 0.8.8'
+  gem "database_cleaner"
 end
 
 # To use debugger

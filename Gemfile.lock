@@ -59,6 +59,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    database_cleaner (0.9.1)
     debug_inspector (0.0.2)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
@@ -201,6 +202,7 @@ DEPENDENCIES
   capistrano
   capybara
   coffee-rails (~> 3.2.1)
+  database_cleaner
   devise
   factory_girl_rails
   guard-rspec
