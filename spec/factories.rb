@@ -20,5 +20,15 @@ FactoryGirl.define do
     password_confirmation "anything"
     status "editor"
   end
+  factory :entry do
+    users [FactoryGirl.create(:editor)]
+    sequence(:wadoku_id){|n| n}
+    sequence(:midashigo){|n| "midashigo#{n}"}
+    sequence(:kana){|n| "kana#{n}"}
+    sequence(:writing){|n| "writing#{n}"}
+    sequence(:romaji){|n| "romaji#{n}"}
+    sequence(:definition){|n| "definition#{n}"}
+    sub_entry "sub_entry"
+  end 
 
 end
