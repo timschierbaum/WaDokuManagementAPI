@@ -2,6 +2,7 @@ Wadokumanagementapi::Application.routes.draw do
   devise_for :users
 
   resources :users, :except => :new
+  match "users/:id/update_status" => "users#update_status", :as => "update_user_status", :via => :put
 
 
   # The priority is based upon order of creation:

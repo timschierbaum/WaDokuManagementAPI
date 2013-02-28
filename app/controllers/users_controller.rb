@@ -82,15 +82,31 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to users_path, notice: 'User was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to root_path, notice: 'User was not updated.' }
+        format.html { redirect_to edit_user_path(@user), notice: 'Something went wrong.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
+  def update_status
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if admin?
+        if @user.update_attributes(params[:user])
+          format.html { redirect_to users_path, notice: 'User was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { redirect_to user_path(@user), notice: 'Something went wrong.' }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      else
+        format.html { redirect_to root_path, notice: 'Access denied!' }
+      end
+    end
+  end
 
   # DELETE /users/1
   # DELETE /users/1.json
