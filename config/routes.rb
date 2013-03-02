@@ -3,6 +3,7 @@ Wadokumanagementapi::Application.routes.draw do
 
   resources :users, :except => :new
   match "users/:id/update_status" => "users#update_status", :as => "update_user_status", :via => :put
+  match "search" => "entry#index", :via => :get
 
 
   # The priority is based upon order of creation:

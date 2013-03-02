@@ -1,0 +1,15 @@
+<div class="span3 well sidebar sidebar-nav">
+  <ul class="nav nav-list">
+    <form action='<%= search_path %>'>
+      <li>
+      <input id='search-top' name='query' type='search' autofocus class='large' value='<%= @query %>'/>
+      </li>
+      <li>
+      <button type="submit" class="btn">Search</button>
+      </li>
+    </form>
+  </ul>
+</div>
+<div class="span9">
+  <%= @parsed %>
+</div>
