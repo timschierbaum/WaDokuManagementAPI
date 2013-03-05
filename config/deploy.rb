@@ -5,7 +5,7 @@ require "rvm/capistrano"                  # Load RVM's capistrano plugin.
 set :rvm_type, :system  # Copy the exact line. I really mean :system here
 
 set :application, "WaDokuManagementAPI"
-set :repository,  "git@github.com:timschierbaum/WaDokuManagementAPI.git"
+set :repository,  "git://github.com/timschierbaum/WaDokuManagementAPI.git"
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
